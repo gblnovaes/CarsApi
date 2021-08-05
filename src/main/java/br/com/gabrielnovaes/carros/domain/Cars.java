@@ -9,9 +9,11 @@ import javax.persistence.Id;
 @Entity
 public class Cars {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String type;
+
 
 
     public Cars(){}
@@ -35,5 +37,13 @@ public class Cars {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
