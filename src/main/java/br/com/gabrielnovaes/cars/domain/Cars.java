@@ -1,4 +1,4 @@
-package br.com.gabrielnovaes.carros.domain;
+package br.com.gabrielnovaes.cars.domain;
 
 
 import javax.persistence.Entity;

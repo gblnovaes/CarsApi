@@ -1,4 +1,4 @@
-package br.com.gabrielnovaes.carros.domain;
+package br.com.gabrielnovaes.cars.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,6 @@ public class CarsServices {
     public Iterable<Cars> getCarByType(String type) {
         return repository.findByType(type);
     }
-
 
     public Cars save(Cars car) {
         return repository.save(car);

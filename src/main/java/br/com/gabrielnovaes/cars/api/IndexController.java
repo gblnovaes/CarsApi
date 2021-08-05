@@ -1,4 +1,4 @@
-package br.com.gabrielnovaes.carros.api;
+package br.com.gabrielnovaes.cars.api;
 
 import org.springframework.web.bind.annotation.*;
 

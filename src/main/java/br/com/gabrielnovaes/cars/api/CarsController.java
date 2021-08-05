@@ -1,7 +1,7 @@
-package br.com.gabrielnovaes.carros.api;
+package br.com.gabrielnovaes.cars.api;
 
-import br.com.gabrielnovaes.carros.domain.Cars;
-import br.com.gabrielnovaes.carros.domain.CarsServices;
+import br.com.gabrielnovaes.cars.domain.Cars;
+import br.com.gabrielnovaes.cars.domain.CarsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
