@@ -36,4 +36,26 @@ public class CarsServices {
     public Cars save(Cars car) {
         return repository.save(car);
     }
+
+
+    public Cars update(Cars car, Long id) {
+        Optional<Cars> optionalCars = getCarById(id);
+        if (optionalCars.isPresent()) {
+            Cars db = optionalCars.get();
+            db.setName(car.getName());
+            db.setType(car.getType());
+            System.out.println("Car id: " + db.getId());
+            repository.save(db);
+            return db;
+        } else {
+            throw new RuntimeException("Not possible update register");
+        }
+    }
+
+    public void delete(Long id) {
+        Optional<Cars> optionalCars = getCarById(id);
+        if(optionalCars.isPresent()){
+               repository.deleteById(id);
+        }
+    }
 }

@@ -34,4 +34,19 @@ public class CarsController {
         return "Car Saved !!!";
     }
 
+    @PutMapping("/{id}")
+    public String put(@PathVariable Long id, @RequestBody Cars car) {
+        Cars cars = services.update(car, id);
+        return "Car Updated";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable  Long id){
+        services.delete( id);
+        return "Car Deleted";
+    }
+
+
+
+
 }
