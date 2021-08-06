@@ -2,6 +2,7 @@ package br.com.gabrielnovaes.cars.api;
 
 import br.com.gabrielnovaes.cars.domain.Cars;
 import br.com.gabrielnovaes.cars.domain.CarsServices;
+import br.com.gabrielnovaes.cars.dto.CarsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class CarsController {
     private CarsServices services;
 
     @GetMapping()
-    public ResponseEntity<Iterable<Cars>> get() {
+    public ResponseEntity<List<CarsDTO>> get() {
         return ResponseEntity.ok(services.getAllCars());
     }
 
@@ -31,8 +32,8 @@ public class CarsController {
     }
 
     @GetMapping("/type/{type}")
-    public ResponseEntity<List<Cars>> getCarByType(@PathVariable String type) {
-        List<Cars> cars = services.getCarByType(type);
+    public ResponseEntity  getCarByType(@PathVariable String type) {
+        List<CarsDTO> cars = services.getCarByType(type);
         return cars.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(cars);
     }
 
