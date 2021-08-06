@@ -1,12 +1,19 @@
 package br.com.gabrielnovaes.cars.domain;
 
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Getter @Setter
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@AllArgsConstructor
 public class Cars {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,36 +21,4 @@ public class Cars {
     private String name;
     private String type;
 
-
-
-    public Cars(){}
-
-    public Cars(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

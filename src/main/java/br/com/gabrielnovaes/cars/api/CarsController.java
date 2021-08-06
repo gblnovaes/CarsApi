@@ -3,8 +3,10 @@ package br.com.gabrielnovaes.cars.api;
 import br.com.gabrielnovaes.cars.domain.Cars;
 import br.com.gabrielnovaes.cars.domain.CarsServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,18 +16,24 @@ public class CarsController {
     private CarsServices services;
 
     @GetMapping()
-    public Iterable<Cars> get() {
-        return services.getAllCars();
+    public ResponseEntity<Iterable<Cars>> get() {
+        return ResponseEntity.ok(services.getAllCars());
     }
 
     @GetMapping("/{id}")
-    public Optional<Cars> getCarById(@PathVariable Long id) {
-        return services.getCarById(id);
+    public ResponseEntity<Cars> getCarById(@PathVariable Long id) {
+        Optional<Cars> car = services.getCarById(id);
+        if (car.isPresent()) {
+            return ResponseEntity.ok(car.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/type/{type}")
-    public Iterable<Cars> getCarByType(@PathVariable String type) {
-        return services.getCarByType(type);
+    public ResponseEntity<List<Cars>> getCarByType(@PathVariable String type) {
+        List<Cars> cars = services.getCarByType(type);
+        return cars.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(cars);
     }
 
     @PostMapping

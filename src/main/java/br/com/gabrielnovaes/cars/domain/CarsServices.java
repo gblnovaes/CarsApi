@@ -15,9 +15,9 @@ public class CarsServices {
 
     public List<Cars> getAllCarsFake() {
         List<Cars> cars = new ArrayList<>();
-        cars.add(new Cars(1L, "Chevette"));
-        cars.add(new Cars(2L, "Honda Civic"));
-        cars.add(new Cars(3L, "Alfa Romeo"));
+        cars.add(new Cars(1L, "Chevette",""));
+        cars.add(new Cars(2L, "Honda Civic",""));
+        cars.add(new Cars(3L, "Alfa Romeo",""));
         return cars;
     }
 
@@ -29,7 +29,7 @@ public class CarsServices {
         return repository.findById(id);
     }
 
-    public Iterable<Cars> getCarByType(String type) {
+    public List<Cars> getCarByType(String type) {
         return repository.findByType(type);
     }
 
