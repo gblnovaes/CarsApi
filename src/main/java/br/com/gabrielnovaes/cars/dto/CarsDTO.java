@@ -2,6 +2,7 @@ package br.com.gabrielnovaes.cars.dto;
 
 import br.com.gabrielnovaes.cars.domain.Cars;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 
 @Data
 public class CarsDTO {
@@ -9,10 +10,10 @@ public class CarsDTO {
     private String name;
     private String type;
 
-    public CarsDTO(Cars car){
-            this.id = car.id;
-            this.name = car.name;
-            this.type = car.type;
+    public static CarsDTO create(Cars car) {
+        ModelMapper modelMapper = new ModelMapper();
+        CarsDTO carsDTO = modelMapper.map(car, CarsDTO.class);
+        return carsDTO;
     }
 }
 

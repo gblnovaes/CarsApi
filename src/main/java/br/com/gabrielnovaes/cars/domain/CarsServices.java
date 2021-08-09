@@ -25,16 +25,16 @@ public class CarsServices {
 
     public List<CarsDTO> getAllCars() {
         List<Cars> cars = repository.findAll();
-        List<CarsDTO> carsListDTO = cars.stream().map(CarsDTO::new).collect(Collectors.toList());
+        List<CarsDTO> carsListDTO = cars.stream().map(CarsDTO::create).collect(Collectors.toList());
         return carsListDTO;
     }
 
     public Optional<CarsDTO> getCarById(Long id) {
-        return repository.findById(id).map(CarsDTO::new);
+        return repository.findById(id).map(CarsDTO::create);
     }
 
     public List<CarsDTO> getCarByType(String type) {
-        return repository.findByType(type).stream().map(c -> new CarsDTO(c)).collect(Collectors.toList());
+        return repository.findByType(type).stream().map(CarsDTO::create).collect(Collectors.toList());
     }
 
     public Cars save(Cars    car) {
