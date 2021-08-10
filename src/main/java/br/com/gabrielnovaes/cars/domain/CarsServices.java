@@ -1,6 +1,7 @@
 package br.com.gabrielnovaes.cars.domain;
 
 import br.com.gabrielnovaes.cars.dto.CarsDTO;
+import org.modelmapper.internal.util.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +38,8 @@ public class CarsServices {
         return repository.findByType(type).stream().map(CarsDTO::create).collect(Collectors.toList());
     }
 
-    public Cars save(Cars    car) {
-        return repository.save(car);
+    public CarsDTO  save(Cars    car) {
+        return CarsDTO.create(repository.save(car));
     }
 
 

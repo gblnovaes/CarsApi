@@ -6,7 +6,9 @@ import br.com.gabrielnovaes.cars.dto.CarsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,15 +34,24 @@ public class CarsController {
     }
 
     @GetMapping("/type/{type}")
-    public ResponseEntity  getCarByType(@PathVariable String type) {
+    public ResponseEntity getCarByType(@PathVariable String type) {
         List<CarsDTO> cars = services.getCarByType(type);
         return cars.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(cars);
     }
 
     @PostMapping
-    public String post(@RequestBody Cars car) {
-        Cars cars = services.save(car);
-        return "Car Saved !!!";
+    public ResponseEntity post(@RequestBody Cars car) {
+        try {
+            URI location = getUrl(car.getId());
+            CarsDTO cars = services.save(car);
+            return ResponseEntity.created(location).build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    private URI getUrl(Long id) {
+        return ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
     }
 
     @PutMapping("/{id}")
