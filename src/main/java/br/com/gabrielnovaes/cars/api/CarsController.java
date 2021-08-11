@@ -42,8 +42,9 @@ public class CarsController {
     @PostMapping
     public ResponseEntity post(@RequestBody Cars car) {
         try {
-            URI location = getUrl(car.getId());
             CarsDTO cars = services.save(car);
+            URI location = getUrl(car.getId());
+
             return ResponseEntity.created(location).build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -55,9 +56,11 @@ public class CarsController {
     }
 
     @PutMapping("/{id}")
-    public String put(@PathVariable Long id, @RequestBody Cars car) {
-        Cars cars = services.update(car, id);
-        return "Car Updated";
+    public ResponseEntity put(@PathVariable ("id") Long id, @RequestBody Cars car) {
+        car.setId(id);
+
+        CarsDTO cars = services.update(car, id);
+        return cars != null ? ResponseEntity.ok(car) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
