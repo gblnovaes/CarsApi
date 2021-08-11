@@ -50,9 +50,11 @@ public class CarsServices {
         }
     }
 
-    public void delete(Long id) {
+    public boolean  delete(Long id) {
         if (getCarById(id).isPresent()) {
             repository.deleteById(id);
+            return true;
         }
+        return false;
     }
 }
