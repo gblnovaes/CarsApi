@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
@@ -19,6 +20,11 @@ public class Cars {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public String name;
+    public String description;
+    public String url_photo;
+    public String url_video;
+    public String latitude;
+    public String longitude;
     public String type;
 
 }
